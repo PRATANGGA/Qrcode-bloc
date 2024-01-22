@@ -104,15 +104,26 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
           build: (context) {
             List<pd.Widget> widgets = [];
 
+            // Add title to PDF
+            widgets.add(
+              pd.Header(
+                level: 0,
+                child: pd.Text("Product List",
+                    style: pd.TextStyle(
+                        fontSize: 20, fontWeight: FontWeight.bold)),
+              ),
+            );
+
             // Add products to PDF
             for (var product in allProduct) {
+              widgets.add(pd.SizedBox(height: 10));
               widgets.add(
                   pd.Text("Product ID: ${product.productid}", style: myStyle));
               widgets.add(pd.Text("Name: ${product.name}", style: myStyle));
               widgets.add(pd.Text("Code: ${product.code}", style: myStyle));
               widgets.add(pd.Text("Quantity: ${product.qty}", style: myStyle));
-              widgets.add(pd.SizedBox(height: 10));
             }
+
             return widgets;
           },
         ));
